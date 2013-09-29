@@ -38,7 +38,6 @@ public class BritishUnderBillionTranslator implements IntegerLanguageTranslator 
    */
   @Override
   public String getNegativePrefixTranslation() {
-    // TODO Auto-generated method stub
     return "minus";
   }
 
