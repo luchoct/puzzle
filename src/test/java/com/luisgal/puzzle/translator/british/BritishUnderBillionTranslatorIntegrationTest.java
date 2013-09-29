@@ -9,7 +9,7 @@ import org.junit.Test;
  * @author Luis
  * 
  */
-public class BritishUnderBillionTranslatorIntegrationTest {
+public final class BritishUnderBillionTranslatorIntegrationTest {
 
   @Test
   public void testNegativePrefixTranslation() {

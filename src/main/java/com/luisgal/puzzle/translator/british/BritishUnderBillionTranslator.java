@@ -11,7 +11,7 @@ import com.luisgal.puzzle.translator.IntegerLanguageTranslator;
  * @author Luis
  * 
  */
-public class BritishUnderBillionTranslator implements IntegerLanguageTranslator {
+public final class BritishUnderBillionTranslator implements IntegerLanguageTranslator {
 
   /**
    * Singleton Holder
@@ -19,6 +19,9 @@ public class BritishUnderBillionTranslator implements IntegerLanguageTranslator 
    */
   static final class BritishUnderBillionTranslatorHolder {
     private static final BritishUnderBillionTranslator INSTANCE = new BritishUnderBillionTranslator();
+
+    private BritishUnderBillionTranslatorHolder() {
+    };
   }
 
   private BritishUnderBillionTranslator() {
@@ -43,14 +46,14 @@ public class BritishUnderBillionTranslator implements IntegerLanguageTranslator 
 
   /**
    * It returns the translation of the given number into British English.
-   * @param number The number to translate. It must have been validated.
+   * @param value The number to translate. It must have been validated.
    * @return The translation into British English.
    * 
    * @see com.luisgal.puzzle.translator.IntegerLanguageTranslator#getWordTranslation
    *      (int)
    */
   @Override
-  public String translate(String number) {
+  public String translate(final String value) {
     // TODO Auto-generated method stub
     return null;
   }
@@ -61,7 +64,7 @@ public class BritishUnderBillionTranslator implements IntegerLanguageTranslator 
    * @see com.luisgal.puzzle.translator.IntegerLanguageTranslator#validateValue(int)
    */
   @Override
-  public void validateValue(String value) throws IllegalArgumentException {
+  public void validateValue(final String value) {
     // TODO Auto-generated method stub
   }
 }

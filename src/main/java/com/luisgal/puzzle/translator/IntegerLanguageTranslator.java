@@ -28,5 +28,5 @@ public interface IntegerLanguageTranslator {
    * @param value The value to validate.
    * @throws IllegalArgumentException In case of failure on validation.
    */
-  void validateValue(String value) throws IllegalArgumentException;
+  void validateValue(String value);
 }

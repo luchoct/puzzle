@@ -11,8 +11,11 @@ import com.luisgal.puzzle.translator.british.BritishUnderBillionTranslator;
  * first argument into the British words translation.
  * @author Luis.
  */
-public class Puzzle {
+public final class Puzzle {
 
+  /**
+   * The translator to use.
+   */
   private final IntegerLanguageTranslator translator;
 
   /**
@@ -26,10 +29,10 @@ public class Puzzle {
   /**
    * It translate the given value.
    * @param value The value to translate.
-   * @return
+   * @return The translation.
    * @throws IllegalArgumentException In case the
    */
-  public String translate(final String value) throws IllegalArgumentException {
+  public String translate(final String value) {
     translator.validateValue(value);
     return translator.translate(value);
   }
@@ -39,7 +42,7 @@ public class Puzzle {
    * @param args The argument must satisfy the validation of the translator.
    * @see com.luisgal.puzzle.translator.british.BritishUnderBillionTranslator
    */
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     if (args.length != 1) {
       System.err.println("Expected one argument. Input the integer to translate.");
     } else {

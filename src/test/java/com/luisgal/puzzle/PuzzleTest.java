@@ -12,7 +12,7 @@ import org.junit.Test;
 import com.luisgal.puzzle.translator.IntegerLanguageTranslator;
 import com.luisgal.puzzle.translator.british.BritishUnderBillionTranslator;
 
-public class PuzzleTest {
+public final class PuzzleTest {
 
   @Test
   public void testTranslateInvokesValidation() {
