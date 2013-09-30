@@ -32,7 +32,7 @@ public final class BritishUnderBillionTranslatorIntegrationTest {
   @Test
   public void testTranslateValue999999999() {
     assertEquals(
-        "nine hundred and ninety nine million nine hundred and ninety nine thousand Nine hundred and ninety nine",
+        "nine hundred and ninety nine million nine hundred and ninety nine thousand nine hundred and ninety nine",
         BritishUnderBillionTranslator.getInstance().translate("999999999"));
   }
 
