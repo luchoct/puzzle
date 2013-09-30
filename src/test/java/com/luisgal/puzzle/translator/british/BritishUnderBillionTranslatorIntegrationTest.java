@@ -12,35 +12,6 @@ import org.junit.Test;
 public final class BritishUnderBillionTranslatorIntegrationTest {
 
   @Test
-  public void testNegativePrefixTranslation() {
-    assertEquals("minus", BritishUnderBillionTranslator.getInstance().getNegativePrefixTranslation());
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testValidateValueWhichIsNotAnInteger() {
-    BritishUnderBillionTranslator.getInstance().validateValue("hello");
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testValidateValueWhichIsSmallerThanMinus999999999() {
-    BritishUnderBillionTranslator.getInstance().validateValue("-1000000000");
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testValidateValueWhichIsGreaterThan999999999() {
-    BritishUnderBillionTranslator.getInstance().validateValue("1000000000");
-  }
-
-  @Test
-  public void testValidateValueBetweenMinus999999999And999999999() {
-    BritishUnderBillionTranslator.getInstance().validateValue("-999999999");
-    BritishUnderBillionTranslator.getInstance().validateValue("-2");
-    BritishUnderBillionTranslator.getInstance().validateValue("0");
-    BritishUnderBillionTranslator.getInstance().validateValue("10");
-    BritishUnderBillionTranslator.getInstance().validateValue("999999999");
-  }
-
-  @Test
   public void testTranslateValueMinus10123() {
     assertEquals("minus ten thousand one hundred and twenty thre", BritishUnderBillionTranslator.getInstance()
         .translate("-10123"));

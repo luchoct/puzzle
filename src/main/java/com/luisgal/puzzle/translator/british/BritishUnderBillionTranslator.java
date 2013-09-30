@@ -3,15 +3,13 @@
  */
 package com.luisgal.puzzle.translator.british;
 
-import com.luisgal.puzzle.translator.IntegerLanguageTranslator;
-
 /**
  * It translates integers between minus one billion and one billion, both
  * exclusive into British English.
  * @author Luis
  * 
  */
-public class BritishUnderBillionTranslator implements IntegerLanguageTranslator {
+public class BritishUnderBillionTranslator extends AbstractBritishLanguageTranslator {
 
   /**
    * Singleton Holder
@@ -25,6 +23,7 @@ public class BritishUnderBillionTranslator implements IntegerLanguageTranslator 
   }
 
   private BritishUnderBillionTranslator() {
+    super(-999999999, 999999999);
   }
 
   /**
@@ -33,15 +32,6 @@ public class BritishUnderBillionTranslator implements IntegerLanguageTranslator 
    */
   public static BritishUnderBillionTranslator getInstance() {
     return BritishUnderBillionTranslatorHolder.INSTANCE;
-  }
-
-  /**
-   * @see com.luisgal.puzzle.translator.IntegerLanguageTranslator#
-   *      getNegativePrefixTranslation()
-   */
-  @Override
-  public String getNegativePrefixTranslation() {
-    return "minus";
   }
 
   /**
@@ -56,23 +46,5 @@ public class BritishUnderBillionTranslator implements IntegerLanguageTranslator 
   public String translate(final String value) {
     // TODO Auto-generated method stub
     return null;
-  }
-
-  /**
-   * It validates that the value is an integer, without grouping characters,
-   * from minus one billion to one billion, both exclusive.
-   * @see com.luisgal.puzzle.translator.IntegerLanguageTranslator#validateValue(int)
-   */
-  @Override
-  public void validateValue(final String value) {
-    try {
-      final int intValue = Integer.parseInt(value);
-      if ((intValue > 999999999) || (intValue < -999999999)) {
-        throw new IllegalArgumentException(
-            "Wrong value to translate. It must be an integer between minus one billion and one billion, both exclusive");
-      }
-    } catch (NumberFormatException nfe) {
-      throw new IllegalArgumentException("Wrong value to translate. It must be an integer");
-    }
   }
 }
