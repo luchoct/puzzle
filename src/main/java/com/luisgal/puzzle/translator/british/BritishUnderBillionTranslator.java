@@ -11,7 +11,7 @@ import com.luisgal.puzzle.translator.IntegerLanguageTranslator;
  * @author Luis
  * 
  */
-public final class BritishUnderBillionTranslator implements IntegerLanguageTranslator {
+public class BritishUnderBillionTranslator implements IntegerLanguageTranslator {
 
   /**
    * Singleton Holder
@@ -65,6 +65,14 @@ public final class BritishUnderBillionTranslator implements IntegerLanguageTrans
    */
   @Override
   public void validateValue(final String value) {
-    // TODO Auto-generated method stub
+    try {
+      final int intValue = Integer.parseInt(value);
+      if ((intValue > 999999999) || (intValue < -999999999)) {
+        throw new IllegalArgumentException(
+            "Wrong value to translate. It must be an integer between minus one billion and one billion, both exclusive");
+      }
+    } catch (NumberFormatException nfe) {
+      throw new IllegalArgumentException("Wrong value to translate. It must be an integer");
+    }
   }
 }

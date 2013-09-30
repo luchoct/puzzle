@@ -11,7 +11,7 @@ import com.luisgal.puzzle.translator.british.BritishUnderBillionTranslator;
  * first argument into the British words translation.
  * @author Luis.
  */
-public final class Puzzle {
+public class Puzzle {
 
   /**
    * The translator to use.
@@ -23,7 +23,7 @@ public final class Puzzle {
    * @param languageTranslator The translator to use.
    */
   public Puzzle(final IntegerLanguageTranslator languageTranslator) {
-    this.translator = languageTranslator;
+    translator = languageTranslator;
   }
 
   /**
