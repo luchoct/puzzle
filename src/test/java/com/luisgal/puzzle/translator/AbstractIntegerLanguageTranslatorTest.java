@@ -3,6 +3,11 @@
  */
 package com.luisgal.puzzle.translator;
 
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.doCallRealMethod;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 import org.junit.Test;
 
 /**
@@ -24,18 +29,25 @@ public class AbstractIntegerLanguageTranslatorTest {
     }
 
     @Override
-    public String getNegativePrefixTranslation() {
+    public String translatePartially(String translationOfPrefix, String part) {
       throw new UnsupportedOperationException("Method not supported");
     }
-
-    @Override
-    public String translate(String value) {
-      throw new UnsupportedOperationException("Method not supported");
-    }
-
   };
 
   private TestAbstractIntegerLanguageTranslator translator = new TestAbstractIntegerLanguageTranslator();
+
+  @Test
+  public void testTranslateValueInvokesTranslateParciallyWithEmptyPrefix() {
+
+    final AbstractIntegerLanguageTranslator mockTranslator = mock(TestAbstractIntegerLanguageTranslator.class);
+    final String valueToTranslate = "aValue";
+
+    doCallRealMethod().when(mockTranslator).translate(eq(valueToTranslate));
+
+    mockTranslator.translate(valueToTranslate);
+
+    verify(mockTranslator).translatePartially(eq(""), eq(valueToTranslate));
+  }
 
   @Test(expected = IllegalArgumentException.class)
   public void testValidateValueWhichIsNotAnInteger() {
@@ -43,17 +55,17 @@ public class AbstractIntegerLanguageTranslatorTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testValidateValueWhichIsSmallerThanMinus9() {
+  public void testValidateValueWhichIsSmallerThanMinimumValue() {
     translator.validateValue("-10");
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testValidateValueWhichIsGreaterThan9() {
+  public void testValidateValueWhichIsGreaterThanMaximumValue() {
     translator.validateValue("10");
   }
 
   @Test
-  public void testValidateValueBetweenMinus9And9() {
+  public void testValidateValueAllowedValue() {
     translator.validateValue("-9");
     translator.validateValue("-2");
     translator.validateValue("0");
