@@ -38,10 +38,10 @@ public class Puzzle {
    */
   public String translate(final String value) {
 
-    integerTranslator.validateValue(value);
+    String absoluteValue = getAbsoluteValue(value);
+    integerTranslator.validateValue(absoluteValue);
 
     final StringBuilder translation = new StringBuilder(signTranslator.translate(value));
-    String absoluteValue = getAbsoluteValue(value);
     StringBuilderUtilities.appendWord(translation, integerTranslator.translate(absoluteValue));
     return translation.toString();
   }
@@ -73,7 +73,13 @@ public class Puzzle {
       final SignLanguageTranslator signTranslator = BritishSignTranslator.getInstance();
       final Puzzle puzzle = new Puzzle(signTranslator, integerTranslator);
       try {
-        System.out.println(puzzle.translate(args[0]));
+        String valueWithoutCommas = args[0].replaceAll(",", "");
+        // I've removed the commas outside the Puzzle class or
+        // LanguageTranslators as it's not clearly defined in requirements
+        // whether the argument could contain miles separators or not.
+        // As it's not clear, I've not implemented it inside BritishTranslators
+
+        System.out.println(puzzle.translate(valueWithoutCommas));
       } catch (IllegalArgumentException e) {
         System.err.println(e.getMessage());
       }

@@ -45,7 +45,7 @@ public final class PuzzleTest {
 
     final String translation = mockedPuzzle.translate(inputValue);
 
-    verify(integerTranslator).validateValue(eq(inputValue));
+    verify(integerTranslator).validateValue(eq(absoluteValue));
     verify(integerTranslator).translate(eq(absoluteValue));
 
     assertEquals("a sign a translation", translation);

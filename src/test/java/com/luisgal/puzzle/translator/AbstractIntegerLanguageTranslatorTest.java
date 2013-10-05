@@ -29,7 +29,7 @@ public class AbstractIntegerLanguageTranslatorTest {
     }
 
     @Override
-    public String translatePartially(String translationOfPrefix, String part) {
+    public String translatePartially(final String translationOfPrefix, final String part) {
       throw new UnsupportedOperationException("Method not supported");
     }
   };

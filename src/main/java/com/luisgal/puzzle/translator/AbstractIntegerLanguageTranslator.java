@@ -5,7 +5,7 @@ public abstract class AbstractIntegerLanguageTranslator implements IntegerLangua
   private int minimumValue;
   private int maximumValue;
 
-  public AbstractIntegerLanguageTranslator(int minimumValue, int maximumValue) {
+  public AbstractIntegerLanguageTranslator(final int minimumValue, final int maximumValue) {
     this.minimumValue = minimumValue;
     this.maximumValue = maximumValue;
   }
@@ -28,8 +28,9 @@ public abstract class AbstractIntegerLanguageTranslator implements IntegerLangua
     try {
       final int intValue = Integer.parseInt(value);
       if ((intValue > maximumValue) || (intValue < minimumValue)) {
-        throw new IllegalArgumentException(
-            "Wrong value to translate. It must be an integer between minus one billion and one billion, both exclusive");
+        throw new IllegalArgumentException(String.format(
+            "Wrong value to translate. It must be an integer between %s and %s, both exclusive", minimumValue,
+            maximumValue));
       }
     } catch (NumberFormatException nfe) {
       throw new IllegalArgumentException("Wrong value to translate. It must be an integer");

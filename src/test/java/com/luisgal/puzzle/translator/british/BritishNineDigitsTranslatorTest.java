@@ -70,4 +70,9 @@ public final class BritishNineDigitsTranslatorTest {
   public void testTranslateValue10001() {
     assertEquals("ten thousand and one", translator.translate("10001"));
   }
+
+  @Test
+  public void testTranslateValue402000000() {
+    assertEquals("four hundred and two million", translator.translate("402000000"));
+  }
 }

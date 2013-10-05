@@ -21,7 +21,7 @@ public class BritishThreeDigitsTranslator extends AbstractIntegerLanguageTransla
    * {@inheritDoc}
    */
   @Override
-  public String translatePartially(String translationOfPrefix, String part) {
+  public String translatePartially(final String translationOfPrefix, final String part) {
 
     final StringBuilder translatedValue = new StringBuilder(40);
 
@@ -37,6 +37,8 @@ public class BritishThreeDigitsTranslator extends AbstractIntegerLanguageTransla
       StringBuilderUtilities.appendWord(translatedValue, BritishOneDigitEnum.valueOfOneDigit(ones)
           .getBritishRepresentation());
     }
+    // Only translates 0 when there is no a translation of a
+    // prefix.
     if (translationOfPrefix.isEmpty() && (translatedValue.length() == 0)) {
       StringBuilderUtilities.appendWord(translatedValue, BritishOneDigitEnum.ZERO.getBritishRepresentation());
     }
@@ -85,7 +87,7 @@ public class BritishThreeDigitsTranslator extends AbstractIntegerLanguageTransla
    * @param onesDigit The ones digit.
    * @return The British translation.
    */
-  String translateTensAndOnes(char tensDigit, char onesDigit) {
+  String translateTensAndOnes(final char tensDigit, final char onesDigit) {
     final StringBuilder translatedValue = new StringBuilder(40);
     if ((tensDigit == '0') && (onesDigit == '0')) {
       StringBuilderUtilities.appendWord(translatedValue, BritishOneDigitEnum.ZERO.getBritishRepresentation());

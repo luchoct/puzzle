@@ -29,7 +29,7 @@ public class BritishNineDigitsTranslator extends AbstractIntegerLanguageTranslat
    * {@inheritDoc}
    */
   @Override
-  public String translatePartially(String translationOfPrefix, String part) {
+  public String translatePartially(final String translationOfPrefix, final String part) {
 
     final String fixedLengthValue = "000000000".substring(0, 9 - part.length()).concat(part);
 
@@ -39,11 +39,13 @@ public class BritishNineDigitsTranslator extends AbstractIntegerLanguageTranslat
       final String currentPartToTranslate = fixedLengthValue.substring(i * 3, (i + 1) * 3);
       final String partialTranslation = threeDigitsTranslator.translatePartially(currentTranslationOfPrefix.toString(),
           currentPartToTranslate);
-      if (!"zero".equals(partialTranslation) || (i == 2)) {
-        // If we get "zero" and it´s not the last translation, we don't append
-        // anything.
-        StringBuilderUtilities.appendWord(translatedValue, partialTranslation);
+
+      if (!"".equals(partialTranslation) && !"zero".equals(partialTranslation)) {
+        // 'zero' is not append to the prefix, so no extra ands are appended.
         StringBuilderUtilities.appendWord(currentTranslationOfPrefix, partialTranslation);
+        StringBuilderUtilities.appendWord(translatedValue, partialTranslation);
+      }
+      if (!"000".equals(currentPartToTranslate)) {
         if (i == 0) {
           StringBuilderUtilities.appendWord(translatedValue, "million");
           StringBuilderUtilities.appendWord(currentTranslationOfPrefix, "million");
@@ -52,6 +54,11 @@ public class BritishNineDigitsTranslator extends AbstractIntegerLanguageTranslat
           StringBuilderUtilities.appendWord(currentTranslationOfPrefix, "thousand");
         }
       }
+    }
+    // Only translates 0 when there is no a translation of a
+    // prefix.
+    if (translationOfPrefix.isEmpty() && (translatedValue.length() == 0)) {
+      StringBuilderUtilities.appendWord(translatedValue, BritishOneDigitEnum.ZERO.getBritishRepresentation());
     }
     return translatedValue.toString();
   }

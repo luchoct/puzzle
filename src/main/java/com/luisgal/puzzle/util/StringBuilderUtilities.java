@@ -1,9 +1,11 @@
 package com.luisgal.puzzle.util;
 
-
 public class StringBuilderUtilities {
 
   protected static final String SPACE = " ";
+
+  private StringBuilderUtilities() {
+  }
 
   /**
    * It appends a word to the given builder, adding a space if needed.
