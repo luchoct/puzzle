@@ -8,235 +8,112 @@ public class BritishThreeDigitsTranslatorTest {
 
   private final BritishThreeDigitsTranslator translator = new BritishThreeDigitsTranslator();
 
-  // We test translatePartially method without a given translated prefix.
-
   @Test
-  public void testTranslatePartially123WithEmptyPrefix() {
-    assertEquals("one hundred and twenty three", translator.translatePartially("", "123"));
+  public void testTranslate123() {
+    assertEquals("one hundred and twenty three", translator.translate("123"));
   }
 
   @Test
-  public void testTranslatePartially781WithEmptyPrefix() {
-    assertEquals("seven hundred and eighty one", translator.translatePartially("", "781"));
+  public void testTranslate781() {
+    assertEquals("seven hundred and eighty one", translator.translate("781"));
   }
 
   @Test
-  public void testTranslatePartially999WithEmptyPrefix() {
-    assertEquals("nine hundred and ninety nine", translator.translatePartially("", "999"));
+  public void testTranslate999() {
+    assertEquals("nine hundred and ninety nine", translator.translate("999"));
   }
 
   @Test
-  public void testTranslatePartially909WithEmptyPrefix() {
-    assertEquals("nine hundred and nine", translator.translatePartially("", "909"));
+  public void testTranslate909() {
+    assertEquals("nine hundred and nine", translator.translate("909"));
   }
 
   @Test
-  public void testTranslatePartially900WithEmptyPrefix() {
-    assertEquals("nine hundred", translator.translatePartially("", "900"));
+  public void testTranslate900() {
+    assertEquals("nine hundred", translator.translate("900"));
   }
 
   @Test
-  public void testTranslatePartially15WithEmptyPrefix() {
-    assertEquals("fifteen", translator.translatePartially("", "15"));
+  public void testTranslate15() {
+    assertEquals("fifteen", translator.translate("15"));
   }
 
   @Test
-  public void testTranslatePartially001WithEmptyPrefix() {
-    assertEquals("one", translator.translatePartially("", "001"));
+  public void testTranslate001() {
+    assertEquals("one", translator.translate("001"));
   }
 
   @Test
-  public void testTranslatePartially01WithEmptyPrefix() {
-    assertEquals("one", translator.translatePartially("", "01"));
+  public void testTranslate01() {
+    assertEquals("one", translator.translate("01"));
   }
 
   @Test
-  public void testTranslatePartially0WithEmptyPrefix() {
-    assertEquals("zero", translator.translatePartially("", "0"));
+  public void testTranslate0() {
+    assertEquals("zero", translator.translate("0"));
   }
 
   @Test
-  public void testTranslatePartially000WithEmptyPrefix() {
-    assertEquals("zero", translator.translatePartially("", "000"));
-  }
-
-  // We test translatePartially method with a given translated prefix.
-
-  @Test
-  public void testTranslatePartially123WithNonEmptyPrefix() {
-    assertEquals("one hundred and twenty three", translator.translatePartially("one thousand", "123"));
+  public void testTranslate000() {
+    assertEquals("zero", translator.translate("000"));
   }
 
   @Test
-  public void testTranslatePartially781WithNonEmptyPrefix() {
-    assertEquals("seven hundred and eighty one", translator.translatePartially("one thousand", "781"));
-  }
-
-  @Test
-  public void testTranslatePartially999WithNonEmptyPrefix() {
-    assertEquals("nine hundred and ninety nine", translator.translatePartially("one thousand", "999"));
-  }
-
-  @Test
-  public void testTranslatePartially909WithNonEmptyPrefix() {
-    assertEquals("nine hundred and nine", translator.translatePartially("one thousand", "909"));
-  }
-
-  @Test
-  public void testTranslatePartially900WithNonEmptyPrefix() {
-    assertEquals("nine hundred", translator.translatePartially("one thousand", "900"));
-  }
-
-  @Test
-  public void testTranslatePartially15WithNonEmptyPrefix() {
-    assertEquals("and fifteen", translator.translatePartially("one thousand", "15"));
-  }
-
-  @Test
-  public void testTranslatePartially001WithNonEmptyPrefix() {
-    assertEquals("and one", translator.translatePartially("one thousand", "001"));
-  }
-
-  @Test
-  public void testTranslatePartially01WithNonEmptyPrefix() {
-    assertEquals("and one", translator.translatePartially("one thousand", "01"));
-  }
-
-  @Test
-  public void testTranslatePartially0WithNonEmptyPrefix() {
-    assertEquals("", translator.translatePartially("one thousand", "0"));
-  }
-
-  @Test
-  public void testTranslatePartially000WithNonEmptyPrefix() {
-    assertEquals("", translator.translatePartially("one thousand", "000"));
-  }
-
-  // We test the appendAndWord method without prefix. The method should append
-  // the 'and' when there are hundreds digit and another digit different from
-  // zero.
-
-  @Test
-  public void testAppendAndWordWithoutPrefixAndWith000() {
+  public void testAppendAndWordWith000() {
     final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '0', '0', '0');
+    translator.appendAndWord(builder, '0', '0', '0');
     // The British representation is 'zero' so I does not include any 'and'
     // word.
     assertEquals(0, builder.length());
   }
 
   @Test
-  public void testAppendAndWordWithoutPrefixAndWith001() {
+  public void testAppendAndWordWith001() {
     final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '0', '0', '1');
+    translator.appendAndWord(builder, '0', '0', '1');
     // The British representation is 'one' so I does not include any 'and' word.
     assertEquals(0, builder.length());
   }
 
   @Test
-  public void testAppendAndWordWithoutPrefixAndWith010() {
+  public void testAppendAndWordWith010() {
     final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '0', '1', '0');
+    translator.appendAndWord(builder, '0', '1', '0');
     // The British representation is 'ten' so I does not include any 'and' word.
     assertEquals(0, builder.length());
   }
 
   @Test
-  public void testAppendAndWordWithoutPrefixAndWith100() {
+  public void testAppendAndWordWith100() {
     final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '1', '0', '0');
+    translator.appendAndWord(builder, '1', '0', '0');
     // The British representation is 'one hundred' so I does not include any
     // 'and' word.
     assertEquals(0, builder.length());
   }
 
   @Test
-  public void testAppendAndWordWithoutPrefixAndWith101() {
+  public void testAppendAndWordWith101() {
     final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '1', '0', '1');
+    translator.appendAndWord(builder, '1', '0', '1');
     // The British representation is 'one hundred and one' so I does include the
     // 'and' word.
     assertEquals("and", builder.toString());
   }
 
   @Test
-  public void testAppendAndWordWithoutPrefixAndWith110() {
+  public void testAppendAndWordWith110() {
     final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '1', '1', '0');
+    translator.appendAndWord(builder, '1', '1', '0');
     // The British representation is 'one hundred and ten' so I does include the
     // 'and' word.
     assertEquals("and", builder.toString());
   }
 
   @Test
-  public void testAppendAndWordWithoutPrefixAndWith111() {
+  public void testAppendAndWordWith111() {
     final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '1', '1', '1');
-    // The British representation is 'one hundred and eleven' so I does include
-    // the 'and' word.
-    assertEquals("and", builder.toString());
-  }
-
-  // We test the appendAndWord method with prefix. In this case, regardless
-  // there are not hundres, the method should append the 'and' when either tens
-  // or ones digit are different from zero.
-
-  @Test
-  public void testAppendAndWordWithPrefixAndWith000() {
-    final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '0', '0', '0');
-    // The British representation is 'zero' so I does not include any 'and'
-    // word.
-    assertEquals(0, builder.length());
-  }
-
-  @Test
-  public void testAppendAndWordWithPrefixAndWith001() {
-    final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '0', '0', '1');
-    // The British representation is 'one' so I does not include any 'and' word.
-    assertEquals(0, builder.length());
-  }
-
-  @Test
-  public void testAppendAndWordWithPrefixAndWith010() {
-    final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '0', '1', '0');
-    // The British representation is 'ten' so I does not include any 'and' word.
-    assertEquals(0, builder.length());
-  }
-
-  @Test
-  public void testAppendAndWordWithPrefixAndWith100() {
-    final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '1', '0', '0');
-    // The British representation is 'one hundred' so I does not include any
-    // 'and' word.
-    assertEquals(0, builder.length());
-  }
-
-  @Test
-  public void testAppendAndWordWithPrefixAndWith101() {
-    final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '1', '0', '1');
-    // The British representation is 'one hundred and one' so I does include the
-    // 'and' word.
-    assertEquals("and", builder.toString());
-  }
-
-  @Test
-  public void testAppendAndWordWithPrefixAndWith110() {
-    final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '1', '1', '0');
-    // The British representation is 'one hundred and ten' so I does include the
-    // 'and' word.
-    assertEquals("and", builder.toString());
-  }
-
-  @Test
-  public void testAppendAndWordWithPrefixAndWith111() {
-    final StringBuilder builder = new StringBuilder();
-    translator.appendAndWord(builder, "", '1', '1', '1');
+    translator.appendAndWord(builder, '1', '1', '1');
     // The British representation is 'one hundred and eleven' so I does include
     // the 'and' word.
     assertEquals("and", builder.toString());

@@ -29,35 +29,30 @@ public class BritishNineDigitsTranslator extends AbstractIntegerLanguageTranslat
    * {@inheritDoc}
    */
   @Override
-  public String translatePartially(final String translationOfPrefix, final String part) {
+  public String translate(final String value) {
 
-    final String fixedLengthValue = "000000000".substring(0, 9 - part.length()).concat(part);
+    final String fixedLengthValue = "000000000".substring(0, 9 - value.length()).concat(value);
 
-    final StringBuilder currentTranslationOfPrefix = new StringBuilder(translationOfPrefix);
     final StringBuilder translatedValue = new StringBuilder(120);
     for (int i = 0; i < 3; i++) {
       final String currentPartToTranslate = fixedLengthValue.substring(i * 3, (i + 1) * 3);
-      final String partialTranslation = threeDigitsTranslator.translatePartially(currentTranslationOfPrefix.toString(),
-          currentPartToTranslate);
+      final String partialTranslation = threeDigitsTranslator.translate(currentPartToTranslate);
 
-      if (!"".equals(partialTranslation) && !"zero".equals(partialTranslation)) {
-        // 'zero' is not append to the prefix, so no extra ands are appended.
-        StringBuilderUtilities.appendWord(currentTranslationOfPrefix, partialTranslation);
+      if (!"000".equals(currentPartToTranslate)) {
+        if (!translatedValue.toString().isEmpty() && currentPartToTranslate.startsWith("0")) {
+          StringBuilderUtilities.appendWord(translatedValue, "and");
+        }
         StringBuilderUtilities.appendWord(translatedValue, partialTranslation);
       }
       if (!"000".equals(currentPartToTranslate)) {
         if (i == 0) {
           StringBuilderUtilities.appendWord(translatedValue, "million");
-          StringBuilderUtilities.appendWord(currentTranslationOfPrefix, "million");
         } else if (i == 1) {
           StringBuilderUtilities.appendWord(translatedValue, "thousand");
-          StringBuilderUtilities.appendWord(currentTranslationOfPrefix, "thousand");
         }
       }
     }
-    // Only translates 0 when there is no a translation of a
-    // prefix.
-    if (translationOfPrefix.isEmpty() && (translatedValue.length() == 0)) {
+    if (translatedValue.toString().isEmpty()) {
       StringBuilderUtilities.appendWord(translatedValue, BritishOneDigitEnum.ZERO.getBritishRepresentation());
     }
     return translatedValue.toString();

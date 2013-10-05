@@ -11,14 +11,6 @@ public abstract class AbstractIntegerLanguageTranslator implements IntegerLangua
   }
 
   /**
-   * {@inheritDoc}
-   */
-  @Override
-  public String translate(final String value) {
-    return translatePartially("", value);
-  }
-
-  /**
    * It validates that the value is an integer, without grouping characters,
    * from minus one billion to one billion, both exclusive.
    * @see com.luisgal.puzzle.translator.IntegerLanguageTranslator#validateValue(int)

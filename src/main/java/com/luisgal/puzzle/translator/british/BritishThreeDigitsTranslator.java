@@ -21,25 +21,23 @@ public class BritishThreeDigitsTranslator extends AbstractIntegerLanguageTransla
    * {@inheritDoc}
    */
   @Override
-  public String translatePartially(final String translationOfPrefix, final String part) {
+  public String translate(final String value) {
 
     final StringBuilder translatedValue = new StringBuilder(40);
 
-    final String fixedLengthValue = "000".substring(0, 3 - part.length()).concat(part);
+    final String fixedLengthValue = "000".substring(0, 3 - value.length()).concat(value);
     final char hundreds = fixedLengthValue.charAt(0);
     final char tens = fixedLengthValue.charAt(1);
     final char ones = fixedLengthValue.charAt(2);
     StringBuilderUtilities.appendWord(translatedValue, translateHundredsDigit(hundreds));
-    appendAndWord(translatedValue, translationOfPrefix, hundreds, tens, ones);
+    appendAndWord(translatedValue, hundreds, tens, ones);
     if (tens != '0') {
       StringBuilderUtilities.appendWord(translatedValue, translateTensAndOnes(tens, ones));
     } else if (ones != '0') {
       StringBuilderUtilities.appendWord(translatedValue, BritishOneDigitEnum.valueOfOneDigit(ones)
           .getBritishRepresentation());
     }
-    // Only translates 0 when there is no a translation of a
-    // prefix.
-    if (translationOfPrefix.isEmpty() && (translatedValue.length() == 0)) {
+    if (translatedValue.toString().isEmpty()) {
       StringBuilderUtilities.appendWord(translatedValue, BritishOneDigitEnum.ZERO.getBritishRepresentation());
     }
     return translatedValue.toString();
@@ -54,13 +52,11 @@ public class BritishThreeDigitsTranslator extends AbstractIntegerLanguageTransla
    * @param tens The digit that represents the tens.
    * @param ones The digit that represents the ones.
    */
-  void appendAndWord(final StringBuilder builder, final String translationOfPrefix, final char hundreds,
-      final char tens, final char ones) {
+  void appendAndWord(final StringBuilder builder, final char hundreds, final char tens, final char ones) {
 
-    if ((!translationOfPrefix.isEmpty() || (hundreds != '0')) && ((tens != '0') || (ones != '0'))) {
-      // We append and when either there is a translated prefix or hundred digit
-      // will be translated, and in addition, at least tens or ones digit are
-      // translated.
+    if ((hundreds != '0') && ((tens != '0') || (ones != '0'))) {
+      // We append and when hundred digit will be translated, and in addition,
+      // at least tens or ones digit will be translated.
       StringBuilderUtilities.appendWord(builder, "and");
     }
   }

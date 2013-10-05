@@ -3,11 +3,6 @@
  */
 package com.luisgal.puzzle.translator;
 
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.doCallRealMethod;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-
 import org.junit.Test;
 
 /**
@@ -29,25 +24,12 @@ public class AbstractIntegerLanguageTranslatorTest {
     }
 
     @Override
-    public String translatePartially(final String translationOfPrefix, final String part) {
+    public String translate(final String value) {
       throw new UnsupportedOperationException("Method not supported");
     }
   };
 
   private TestAbstractIntegerLanguageTranslator translator = new TestAbstractIntegerLanguageTranslator();
-
-  @Test
-  public void testTranslateValueInvokesTranslateParciallyWithEmptyPrefix() {
-
-    final AbstractIntegerLanguageTranslator mockTranslator = mock(TestAbstractIntegerLanguageTranslator.class);
-    final String valueToTranslate = "aValue";
-
-    doCallRealMethod().when(mockTranslator).translate(eq(valueToTranslate));
-
-    mockTranslator.translate(valueToTranslate);
-
-    verify(mockTranslator).translatePartially(eq(""), eq(valueToTranslate));
-  }
 
   @Test(expected = IllegalArgumentException.class)
   public void testValidateValueWhichIsNotAnInteger() {
