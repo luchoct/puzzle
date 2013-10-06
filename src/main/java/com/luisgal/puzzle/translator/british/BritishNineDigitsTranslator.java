@@ -36,25 +36,43 @@ public class BritishNineDigitsTranslator extends AbstractIntegerLanguageTranslat
     final StringBuilder translatedValue = new StringBuilder(120);
     for (int i = 0; i < 3; i++) {
       final String currentPartToTranslate = fixedLengthValue.substring(i * 3, (i + 1) * 3);
-      final String partialTranslation = threeDigitsTranslator.translate(currentPartToTranslate);
 
       if (!"000".equals(currentPartToTranslate)) {
-        if (!translatedValue.toString().isEmpty() && currentPartToTranslate.startsWith("0")) {
-          StringBuilderUtilities.appendWord(translatedValue, "and");
-        }
+        final String partialTranslation = threeDigitsTranslator.translate(currentPartToTranslate);
+        appendAndWord(translatedValue, translatedValue.toString(), currentPartToTranslate);
         StringBuilderUtilities.appendWord(translatedValue, partialTranslation);
-      }
-      if (!"000".equals(currentPartToTranslate)) {
-        if (i == 0) {
-          StringBuilderUtilities.appendWord(translatedValue, "million");
-        } else if (i == 1) {
-          StringBuilderUtilities.appendWord(translatedValue, "thousand");
-        }
+        appendGroupSeparator(translatedValue, i);
       }
     }
     if (translatedValue.toString().isEmpty()) {
       StringBuilderUtilities.appendWord(translatedValue, BritishOneDigitEnum.ZERO.getBritishRepresentation());
     }
     return translatedValue.toString();
+  }
+
+  /**
+   * It appends the 'and' word if needed.
+   * @param builder The builder where the 'and' word will be appended.
+   * @param previousTranslation The translation of the previous parts.
+   * @param currentTranslatedPart The part that has been translated.
+   */
+  void appendAndWord(final StringBuilder builder, final String previousTranslation, final String currentTranslatedPart) {
+    if (!previousTranslation.isEmpty() && currentTranslatedPart.startsWith("0")) {
+      StringBuilderUtilities.appendWord(builder, "and");
+    }
+  }
+
+  /**
+   * It appends the translation of a group separator if needed.
+   * @param builder The builder where the translation of the group separator
+   *          will be appended.
+   * @param lastIndex The index of the last translated part.
+   */
+  void appendGroupSeparator(final StringBuilder builder, int lastIndex) {
+    if (lastIndex == 0) {
+      StringBuilderUtilities.appendWord(builder, "million");
+    } else if (lastIndex == 1) {
+      StringBuilderUtilities.appendWord(builder, "thousand");
+    }
   }
 }

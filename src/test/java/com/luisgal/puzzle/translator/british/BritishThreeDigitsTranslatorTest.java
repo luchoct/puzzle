@@ -1,6 +1,7 @@
 package com.luisgal.puzzle.translator.british;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -59,41 +60,41 @@ public class BritishThreeDigitsTranslatorTest {
   }
 
   @Test
-  public void testAppendAndWordWith000() {
+  public void testAppendAndWordWith000DoesNotAppendAnything() {
     final StringBuilder builder = new StringBuilder();
     translator.appendAndWord(builder, '0', '0', '0');
     // The British representation is 'zero' so I does not include any 'and'
     // word.
-    assertEquals(0, builder.length());
+    assertTrue(builder.toString().isEmpty());
   }
 
   @Test
-  public void testAppendAndWordWith001() {
+  public void testAppendAndWordWith001DoesNotAppendAnything() {
     final StringBuilder builder = new StringBuilder();
     translator.appendAndWord(builder, '0', '0', '1');
     // The British representation is 'one' so I does not include any 'and' word.
-    assertEquals(0, builder.length());
+    assertTrue(builder.toString().isEmpty());
   }
 
   @Test
-  public void testAppendAndWordWith010() {
+  public void testAppendAndWordWith010DoesNotAppendAnything() {
     final StringBuilder builder = new StringBuilder();
     translator.appendAndWord(builder, '0', '1', '0');
     // The British representation is 'ten' so I does not include any 'and' word.
-    assertEquals(0, builder.length());
+    assertTrue(builder.toString().isEmpty());
   }
 
   @Test
-  public void testAppendAndWordWith100() {
+  public void testAppendAndWordWith100DoesNotAppendAnything() {
     final StringBuilder builder = new StringBuilder();
     translator.appendAndWord(builder, '1', '0', '0');
     // The British representation is 'one hundred' so I does not include any
     // 'and' word.
-    assertEquals(0, builder.length());
+    assertTrue(builder.toString().isEmpty());
   }
 
   @Test
-  public void testAppendAndWordWith101() {
+  public void testAppendAndWordWith101DoesAppendAndWord() {
     final StringBuilder builder = new StringBuilder();
     translator.appendAndWord(builder, '1', '0', '1');
     // The British representation is 'one hundred and one' so I does include the
@@ -102,7 +103,7 @@ public class BritishThreeDigitsTranslatorTest {
   }
 
   @Test
-  public void testAppendAndWordWith110() {
+  public void testAppendAndWordWith110DoesAppendAndWord() {
     final StringBuilder builder = new StringBuilder();
     translator.appendAndWord(builder, '1', '1', '0');
     // The British representation is 'one hundred and ten' so I does include the
@@ -111,7 +112,7 @@ public class BritishThreeDigitsTranslatorTest {
   }
 
   @Test
-  public void testAppendAndWordWith111() {
+  public void testAppendAndWordWith111DoesAppendAndWord() {
     final StringBuilder builder = new StringBuilder();
     translator.appendAndWord(builder, '1', '1', '1');
     // The British representation is 'one hundred and eleven' so I does include
@@ -120,8 +121,8 @@ public class BritishThreeDigitsTranslatorTest {
   }
 
   @Test
-  public void testTranslateHundredsDigitWithZeroDigit() {
-    assertEquals("", translator.translateHundredsDigit('0'));
+  public void testTranslateHundredsDigitWithZeroDigitTranslatesEmptyString() {
+    assertTrue(translator.translateHundredsDigit('0').isEmpty());
   }
 
   @Test
@@ -130,7 +131,7 @@ public class BritishThreeDigitsTranslatorTest {
   }
 
   @Test
-  public void testTranslateTensAndOnesWith00() {
+  public void testTranslateTensAndOnesWith00TranslatesZero() {
     assertEquals("zero", translator.translateTensAndOnes('0', '0'));
   }
 

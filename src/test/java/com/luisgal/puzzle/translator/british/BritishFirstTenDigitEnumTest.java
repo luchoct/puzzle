@@ -7,18 +7,18 @@ import org.junit.Test;
 public class BritishFirstTenDigitEnumTest {
 
   @Test
-  public void testGetBritishRepresentation() {
+  public void testGetBritishRepresentationFromThirteen() {
     assertEquals("thirteen", BritishFirstTenDigitEnum.THIRTEEN.getBritishRepresentation());
   }
 
   @Test
-  public void testValueOfProperTenDigit() {
+  public void testValueOfProperTenDigitRetunsEnum() {
     assertEquals(BritishFirstTenDigitEnum.THIRTEEN,
         BritishFirstTenDigitEnum.valueOfOneDigit(BritishFirstTenDigitEnum.THIRTEEN.getOneDigit()));
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testValueOfUnproperTenDigit() {
+  public void testValueOfUnproperTenDigitThrowsException() {
     BritishFirstTenDigitEnum.valueOfOneDigit('a');
   }
 }

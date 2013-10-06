@@ -13,18 +13,17 @@ import org.junit.Test;
  */
 public class BritishOneDigitEnumTest {
   @Test
-  public void testGetBritishRepresentation() {
+  public void testGetBritishRepresentationFromOne() {
     assertEquals("one", BritishOneDigitEnum.ONE.getBritishRepresentation());
   }
 
   @Test
-  public void testValueOfProperOneDigit() {
-    assertEquals(BritishOneDigitEnum.ONE,
-        BritishOneDigitEnum.valueOfOneDigit(BritishOneDigitEnum.ONE.getOneDigit()));
+  public void testValueOfProperOneDigitReturnsEnum() {
+    assertEquals(BritishOneDigitEnum.ONE, BritishOneDigitEnum.valueOfOneDigit(BritishOneDigitEnum.ONE.getOneDigit()));
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testValueOfUnproperOneDigit() {
+  public void testValueOfUnproperOneDigitThrowsException() {
     BritishOneDigitEnum.valueOfOneDigit('a');
   }
 }

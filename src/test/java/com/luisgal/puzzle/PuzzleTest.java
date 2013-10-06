@@ -31,7 +31,7 @@ public final class PuzzleTest {
   }
 
   @Test
-  public void testTranslateWithoutValidationError() {
+  public void testTranslateWithoutValidationErrorInvokesTranslateOnTranslator() {
     final IntegerLanguageTranslator integerTranslator = mock(BritishNineDigitsTranslator.class);
     final SignLanguageTranslator signTranslator = mock(BritishSignTranslator.class);
     final Puzzle mockedPuzzle = new Puzzle(signTranslator, integerTranslator);

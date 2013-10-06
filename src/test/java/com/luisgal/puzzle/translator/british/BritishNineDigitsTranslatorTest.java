@@ -18,7 +18,7 @@ import org.mockito.InOrder;
 public final class BritishNineDigitsTranslatorTest {
 
   @Test
-  public void testTranslate() {
+  public void testTranslateWithAllPartsDifferentFromZero() {
     final BritishThreeDigitsTranslator mockThreeDigitsTranslator = mock(BritishThreeDigitsTranslator.class);
     final String partToTranslate = "56915781";
 
@@ -39,8 +39,85 @@ public final class BritishNineDigitsTranslatorTest {
     assertEquals("fifty six million nine hundred and fifteen thousand seven hundred and eighty one", translation);
   }
 
+  @Test
+  public void testTranslateWithOnePartEqualToZero() {
+    final BritishThreeDigitsTranslator mockThreeDigitsTranslator = mock(BritishThreeDigitsTranslator.class);
+    final String partToTranslate = "56000781";
+
+    final BritishNineDigitsTranslator mockedTranslator = new BritishNineDigitsTranslator(mockThreeDigitsTranslator);
+    given(mockThreeDigitsTranslator.translate(eq("056"))).willReturn("fifty six");
+    given(mockThreeDigitsTranslator.translate(eq("000"))).willReturn("zero");
+    given(mockThreeDigitsTranslator.translate(eq("781"))).willReturn("seven hundred and eighty one");
+
+    final String translation = mockedTranslator.translate(partToTranslate);
+
+    final InOrder order = inOrder(mockThreeDigitsTranslator);
+    order.verify(mockThreeDigitsTranslator).translate(eq("056"));
+    order.verify(mockThreeDigitsTranslator).translate(eq("781"));
+
+    verifyNoMoreInteractions(mockThreeDigitsTranslator);
+
+    assertEquals("fifty six million seven hundred and eighty one", translation);
+  }
+
   private final BritishNineDigitsTranslator translator = new BritishNineDigitsTranslator(
       new BritishThreeDigitsTranslator());
+
+  @Test
+  public void testAppendAndWordWithoutPreviousTranslationAndPartEqualsToZero() {
+    final StringBuilder builder = new StringBuilder(3);
+    translator.appendAndWord(builder, "", "000");
+    assertEquals("", builder.toString());
+  }
+
+  @Test
+  public void testAppendAndWordWithoutPreviousTranslationAndPartDifferentToZero() {
+    final StringBuilder builder = new StringBuilder(3);
+    translator.appendAndWord(builder, "", "100");
+    assertEquals("", builder.toString());
+  }
+
+  @Test
+  public void testAppendAndWordWithPreviousTranslationAndHundredsOnCurrentPart() {
+    final StringBuilder builder = new StringBuilder(3);
+    translator.appendAndWord(builder, "a translation", "100");
+    assertEquals("", builder.toString());
+  }
+
+  @Test
+  public void testAppendAndWordWithPreviousTranslationAndTensOnCurrentPart() {
+    final StringBuilder builder = new StringBuilder(3);
+    translator.appendAndWord(builder, "a translation", "010");
+    assertEquals("and", builder.toString());
+  }
+
+  @Test
+  public void testAppendAndWordWithPreviousTranslationAndOnesOnCurrentPart() {
+    final StringBuilder builder = new StringBuilder(3);
+    translator.appendAndWord(builder, "a translation", "001");
+    assertEquals("and", builder.toString());
+  }
+
+  @Test
+  public void testAppendGroupSeparatorAfterFirstPart() {
+    final StringBuilder builder = new StringBuilder(3);
+    translator.appendGroupSeparator(builder, 0);
+    assertEquals("million", builder.toString());
+  }
+
+  @Test
+  public void testAppendGroupSeparatorAfterSecondPart() {
+    final StringBuilder builder = new StringBuilder(3);
+    translator.appendGroupSeparator(builder, 1);
+    assertEquals("thousand", builder.toString());
+  }
+
+  @Test
+  public void testAppendGroupSeparatorAfterThirdPart() {
+    final StringBuilder builder = new StringBuilder(3);
+    translator.appendGroupSeparator(builder, 2);
+    assertEquals("", builder.toString());
+  }
 
   @Test
   public void testTranslateValue10123() {
