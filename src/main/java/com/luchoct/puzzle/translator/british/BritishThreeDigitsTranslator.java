@@ -1,10 +1,10 @@
 /**
  * 
  */
-package com.luisgal.puzzle.translator.british;
+package com.luchoct.puzzle.translator.british;
 
-import com.luisgal.puzzle.translator.AbstractIntegerLanguageTranslator;
-import com.luisgal.puzzle.util.StringBuilderUtilities;
+import com.luchoct.puzzle.translator.AbstractIntegerLanguageTranslator;
+import com.luchoct.puzzle.util.StringBuilderUtilities;
 
 /**
  * It translates three digits positive integers into British English.

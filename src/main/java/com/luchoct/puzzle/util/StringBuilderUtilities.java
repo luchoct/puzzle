@@ -1,4 +1,4 @@
-package com.luisgal.puzzle.util;
+package com.luchoct.puzzle.util;
 
 public class StringBuilderUtilities {
 

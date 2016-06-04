@@ -1,4 +1,4 @@
-package com.luisgal.puzzle.translator.british;
+package com.luchoct.puzzle.translator.british;
 
 import static org.junit.Assert.assertEquals;
 

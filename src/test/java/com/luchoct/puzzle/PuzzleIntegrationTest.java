@@ -1,13 +1,13 @@
-package com.luisgal.puzzle;
+package com.luchoct.puzzle;
 
 import static org.junit.Assert.assertEquals;
 
+import com.luchoct.puzzle.translator.british.BritishNineDigitsTranslator;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.luisgal.puzzle.translator.british.BritishNineDigitsTranslator;
-import com.luisgal.puzzle.translator.british.BritishSignTranslator;
-import com.luisgal.puzzle.translator.british.BritishThreeDigitsTranslator;
+import com.luchoct.puzzle.translator.british.BritishSignTranslator;
+import com.luchoct.puzzle.translator.british.BritishThreeDigitsTranslator;
 
 public class PuzzleIntegrationTest {
 

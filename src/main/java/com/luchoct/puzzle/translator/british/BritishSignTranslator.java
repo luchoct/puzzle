@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.luisgal.puzzle.translator.british;
+package com.luchoct.puzzle.translator.british;
 
-import com.luisgal.puzzle.translator.SignLanguageTranslator;
+import com.luchoct.puzzle.translator.SignLanguageTranslator;
 
 /**
  * @author Luis A translator that translates the sign into British

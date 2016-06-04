@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.luisgal.puzzle.translator;
+package com.luchoct.puzzle.translator;
 
 import org.junit.Test;
 

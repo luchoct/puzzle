@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.luisgal.puzzle.translator;
+package com.luchoct.puzzle.translator;
 
 /**
  * It translates an integer into a word translation in one specific language.

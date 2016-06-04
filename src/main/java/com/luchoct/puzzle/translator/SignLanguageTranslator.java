@@ -1,4 +1,4 @@
-package com.luisgal.puzzle.translator;
+package com.luchoct.puzzle.translator;
 
 public interface SignLanguageTranslator {
 

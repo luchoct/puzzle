@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.luisgal.puzzle.translator.british;
+package com.luchoct.puzzle.translator.british;
 
 /**
  * @author Luis Enum with the tens and their integer representations.

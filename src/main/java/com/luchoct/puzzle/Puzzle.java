@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.luisgal.puzzle;
+package com.luchoct.puzzle;
 
-import com.luisgal.puzzle.translator.IntegerLanguageTranslator;
-import com.luisgal.puzzle.translator.SignLanguageTranslator;
-import com.luisgal.puzzle.translator.british.BritishNineDigitsTranslator;
-import com.luisgal.puzzle.translator.british.BritishSignTranslator;
-import com.luisgal.puzzle.translator.british.BritishThreeDigitsTranslator;
-import com.luisgal.puzzle.util.StringBuilderUtilities;
+import com.luchoct.puzzle.translator.SignLanguageTranslator;
+import com.luchoct.puzzle.translator.british.BritishNineDigitsTranslator;
+import com.luchoct.puzzle.translator.IntegerLanguageTranslator;
+import com.luchoct.puzzle.translator.british.BritishSignTranslator;
+import com.luchoct.puzzle.translator.british.BritishThreeDigitsTranslator;
+import com.luchoct.puzzle.util.StringBuilderUtilities;
 
 /**
  * This class is the Command Line Interface of Puzzle One. It translates the
@@ -62,7 +62,7 @@ public class Puzzle {
   /**
    * It translates the first argument into the British words translation.
    * @param args The argument must satisfy the validation of the translator.
-   * @see com.luisgal.puzzle.translator.british.BritishNineDigitsTranslator
+   * @see BritishNineDigitsTranslator
    */
   public static void main(final String[] args) {
     if (args.length != 1) {

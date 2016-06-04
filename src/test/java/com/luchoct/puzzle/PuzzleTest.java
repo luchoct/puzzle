@@ -1,4 +1,4 @@
-package com.luisgal.puzzle;
+package com.luchoct.puzzle;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
@@ -9,13 +9,12 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import com.luchoct.puzzle.translator.IntegerLanguageTranslator;
+import com.luchoct.puzzle.translator.SignLanguageTranslator;
+import com.luchoct.puzzle.translator.british.BritishNineDigitsTranslator;
+import com.luchoct.puzzle.translator.british.BritishSignTranslator;
+import com.luchoct.puzzle.translator.british.BritishThreeDigitsTranslator;
 import org.junit.Test;
-
-import com.luisgal.puzzle.translator.IntegerLanguageTranslator;
-import com.luisgal.puzzle.translator.SignLanguageTranslator;
-import com.luisgal.puzzle.translator.british.BritishNineDigitsTranslator;
-import com.luisgal.puzzle.translator.british.BritishSignTranslator;
-import com.luisgal.puzzle.translator.british.BritishThreeDigitsTranslator;
 
 public final class PuzzleTest {
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.luisgal.puzzle.translator.british;
+package com.luchoct.puzzle.translator.british;
 
 /**
  * Enum with the British representations of the one digits.
