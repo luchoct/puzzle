@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.luchoct.puzzle.translator.british;
 
@@ -9,21 +9,21 @@ import org.junit.Test;
 
 /**
  * @author Luis
- * 
  */
 public class BritishOneDigitEnumTest {
-  @Test
-  public void testGetBritishRepresentationFromOne() {
-    assertEquals("one", BritishOneDigitEnum.ONE.getBritishRepresentation());
-  }
+	@Test
+	public void testGetBritishRepresentationFromOne() {
+		assertEquals("one", BritishOneDigitEnum.ONE.getBritishRepresentation());
+	}
 
-  @Test
-  public void testValueOfProperOneDigitReturnsEnum() {
-    assertEquals(BritishOneDigitEnum.ONE, BritishOneDigitEnum.valueOfOneDigit(BritishOneDigitEnum.ONE.getOneDigit()));
-  }
+	@Test
+	public void testValueOfProperOneDigitReturnsEnum() {
+		assertEquals(BritishOneDigitEnum.ONE,
+				BritishOneDigitEnum.valueOfOneDigit(BritishOneDigitEnum.ONE.getOneDigit()));
+	}
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testValueOfUnproperOneDigitThrowsException() {
-    BritishOneDigitEnum.valueOfOneDigit('a');
-  }
+	@Test(expected = IllegalArgumentException.class)
+	public void testValueOfUnproperOneDigitThrowsException() {
+		BritishOneDigitEnum.valueOfOneDigit('a');
+	}
 }

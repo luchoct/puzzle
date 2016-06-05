@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.luchoct.puzzle.translator.british;
 
@@ -9,23 +9,22 @@ import org.junit.Test;
 
 /**
  * @author Luis
- * 
  */
 public class BritishTenDigitEnumTest {
 
-  @Test
-  public void testGetBritishRepresentationFromTwenty() {
-    assertEquals("twenty", BritishTenDigitEnum.TWENTY.getBritishRepresentation());
-  }
+	@Test
+	public void testGetBritishRepresentationFromTwenty() {
+		assertEquals("twenty", BritishTenDigitEnum.TWENTY.getBritishRepresentation());
+	}
 
-  @Test
-  public void testValueOfProperTenDigitReturnsEnum() {
-    assertEquals(BritishTenDigitEnum.TWENTY,
-        BritishTenDigitEnum.valueOfTenDigit(BritishTenDigitEnum.TWENTY.getTenDigit()));
-  }
+	@Test
+	public void testValueOfProperTenDigitReturnsEnum() {
+		assertEquals(BritishTenDigitEnum.TWENTY,
+				BritishTenDigitEnum.valueOfTenDigit(BritishTenDigitEnum.TWENTY.getTenDigit()));
+	}
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testValueOfUnproperTenDigitThrowsException() {
-    BritishTenDigitEnum.valueOfTenDigit('a');
-  }
+	@Test(expected = IllegalArgumentException.class)
+	public void testValueOfUnproperTenDigitThrowsException() {
+		BritishTenDigitEnum.valueOfTenDigit('a');
+	}
 }

@@ -11,9 +11,9 @@
 	<properties>
 		<encoding>UTF-8</encoding>
 		<junitVersion>4.10</junitVersion>
-		<checkstylePluginVersion>2.5</checkstylePluginVersion>
-		<pmdPluginVersion>2.5</pmdPluginVersion>
-		<jdkVersion>1.6</jdkVersion>
+		<checkstylePluginVersion>2.17</checkstylePluginVersion>
+		<pmdPluginVersion>3.6</pmdPluginVersion>
+		<jdkVersion>1.8</jdkVersion>
 	</properties>
 
 	<build>
@@ -21,6 +21,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
 				<configuration>
 					<encoding>${encoding}</encoding>
 					<source>${jdkVersion}</source>
@@ -30,14 +31,14 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.2</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <mainClass>com.luchoct.puzzle.Puzzle</mainClass>
-            </manifest>
-          </archive>
-        </configuration>				
+				<version>3.0.0</version>
+				<configuration>
+				  <archive>
+					<manifest>
+					  <mainClass>com.luchoct.puzzle.Puzzle</mainClass>
+					</manifest>
+				  </archive>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -47,7 +48,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.5</version>
+				<version>3.0.0</version>
 				<configuration>
 					<encoding>${encoding}</encoding>
 				</configuration>
@@ -55,7 +56,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>2.0.1</version>
+				<version>3.5.1</version>
 			</plugin>
 		</plugins>
 	</build>
@@ -67,7 +68,12 @@
 				<version>${pmdPluginVersion}</version>
 				<configuration>
 					<targetJdk>${jdkVersion}</targetJdk>
+					<skipPmdError>false</skipPmdError>
+					<skipEmptyReport>false</skipEmptyReport>
 					<includeTests>true</includeTests>
+					<rulesets>
+						<ruleset>${basedir}/src/main/resources/pmdConfiguration.xml</ruleset>
+					</rulesets>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -82,17 +88,17 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jxr-plugin</artifactId>
-				<version>2.2</version>
+				<version>2.5</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.8</version>
+				<version>2.10.3</version>
 			</plugin>
 			<plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
-        <version>2.5.1</version>
+        <version>2.7</version>
       </plugin>
 		</plugins>
 	</reporting>
