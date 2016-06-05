@@ -8,7 +8,7 @@ import com.luchoct.puzzle.translator.SignLanguageTranslator;
 /**
  * @author Luis A translator that translates the sign into British
  */
-public final class BritishSignTranslator implements SignLanguageTranslator {
+public class BritishSignTranslator implements SignLanguageTranslator {
 
 	/**
 	 * Singleton Holder
