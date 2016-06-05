@@ -39,10 +39,6 @@ public final class BritishSignTranslator implements SignLanguageTranslator {
 	 */
 	@Override
 	public String translate(final String value) {
-		if (value.startsWith("-")) {
-			return "minus";
-		} else {
-			return "";
-		}
+		return value.startsWith("-") ? "minus" : "";
 	}
 }
